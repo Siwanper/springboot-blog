@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- 引入 properties 配置文件 -->
+    <properties resource="config/mbg.properties"/>
+
+    <!-- 数据库链接驱动包 -->
+    <classPathEntry location="${mbg.jar}" />
+
+    <context id="MySqlTables" targetRuntime="MyBatis3">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8" />
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+
+        <!-- 为生成的Java模型类添加序列化接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${mbg.driverClassName}" connectionURL="${mbg.url}" userId="${mbg.username}" password="${mbg.password}" />
+
+        <!-- java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl； 注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型； -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 实体类 -->
+        <javaModelGenerator targetPackage="com.swp.springboot.modal.vo" targetProject="${mbg.path}/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 配置文件 *Mapper.xml -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="${mbg.path}/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- 接口 *Mapper.java-->
+        <javaClientGenerator targetPackage="com.swp.springboot.dao" targetProject="${mbg.path}/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table domainObjectName="RelationshipVo" tableName="t_relationships" />
+
+    </context>
+</generatorConfiguration>
