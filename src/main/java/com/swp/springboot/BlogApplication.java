@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @MapperScan("com.swp.springboot.dao")
 @EnableScheduling
-public class BlogApplication extends SpringBootServletInitializer {
+public class BlogApplication extends SpringBootServletInitializer{
 
-	// 我们需要类似于web.xml的配置方式来启动spring上下文，在Application类的同级添加一个SpringBootStartApplication类
+	//  我们需要类似于web.xml的配置方式来启动spring上下文，在Application类的同级添加一个SpringBootStartApplication类
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(BlogApplication.class);
