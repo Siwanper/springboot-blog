@@ -202,8 +202,14 @@ public class ContentService implements IContentService {
         contentVoMapper.updateByPrimaryKeySelective(contents);
 
         Integer cid = contents.getCid();
-        String key = RedisKeyUtil.getKey(ContentKey.TABLE_NAME, ContentKey.MAJOR_KEY, contents.getSlug());
-        redisService.deleteKey(key);
+        String cid_key = RedisKeyUtil.getKey(ContentKey.TABLE_NAME, ContentKey.MAJOR_KEY, String.valueOf(contents.getCid()));
+        String slug_key = RedisKeyUtil.getKey(ContentKey.TABLE_NAME, ContentKey.MAJOR_KEY, contents.getSlug());
+        if (StringUtils.isNotBlank(cid_key)) {
+            redisService.deleteKey(cid_key);
+        }
+        if (StringUtils.isNotBlank(slug_key)) {
+            redisService.deleteKey(slug_key);
+        }
 
         relationshipService.deleteById(cid, null);
         metaService.saveMetas(Types.TAG.getType(), contents.getTags(), cid);

@@ -105,7 +105,7 @@ public class ArticleController extends AbstractController {
         } catch (Exception e) {
             return ExceptionHelper.handlerException(logger, "文章发布失败", e);
         }
-        return RestResponseBo.ok();
+        return RestResponseBo.ok(contents.getCid());
     }
 
     /**
@@ -140,7 +140,7 @@ public class ArticleController extends AbstractController {
         contents.setAuthorId(user.getUid());
         contents.setType(Types.ARTICLE.getType());
         contentService.updateArticle(contents);
-        return RestResponseBo.ok();
+        return RestResponseBo.ok(contents.getCid());
     }
 
     @PostMapping("/delete")
