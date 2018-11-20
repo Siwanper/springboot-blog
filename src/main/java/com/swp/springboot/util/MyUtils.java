@@ -159,17 +159,21 @@ public class MyUtils {
      * @return
      */
     public static String getUploadFilePath() {
-        String path = MyUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        path = path.substring(1, path.length());
+        String path = MyUtils.class.getResource("/").getPath();
+        int lastIndex = path.lastIndexOf("/ROOT");
+        path = path.substring(0, lastIndex);
+        System.out.println("path == " + path);
         try {
             path = URLDecoder.decode(path, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        int lastIndex = path.lastIndexOf("/") + 1;
-        path = path.substring(0, lastIndex);
-        File file = new File("");
-        return file.getAbsolutePath() + "/";
+
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return path;
     }
 
     /**

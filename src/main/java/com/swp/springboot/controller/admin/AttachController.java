@@ -101,7 +101,7 @@ public class AttachController extends AbstractController {
                 }
             }
         } catch (IOException e) {
-            return RestResponseBo.fail("文件上传失败");
+            return RestResponseBo.fail(CLASSPATH);
         }
         return RestResponseBo.ok(attachVoList);
     }

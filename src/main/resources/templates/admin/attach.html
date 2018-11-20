@@ -125,11 +125,11 @@
             this.on("success", function (file, msg) {
                 console.log(file);
                 if (msg.success !== true) {
-                    tale.alertError('上传文件大于1M');
+                    tale.alertError(msg);
                 }
                 setTimeout(function () {
                     window.location.reload();
-                }, 200);
+                }, 1000);
             });
         }
     });
