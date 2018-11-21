@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- 升级thymeleaf版本，低版本会对标签验证很严格 -->
 		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
